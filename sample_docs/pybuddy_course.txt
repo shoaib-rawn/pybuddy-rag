@@ -1,0 +1,10 @@
+PyBuddy Python Course - Information
+
+The PyBuddy course is a 4-week online course for beginners. Classes are on Monday and Wednesday from 7 PM to 8 PM (Pakistan time). Office hours are on Saturday from 4 PM to 5 PM.
+
+Week 1: Installing Python, variables, numbers and strings.
+Week 2: Lists, tuples and dictionaries.
+Week 3: if statements and loops.
+Week 4: Functions and handling errors with try and except.
+
+Each week ends with a small project. Projects must be submitted by Sunday 11:59 PM. Late projects lose 10 percent of the marks per day. A certificate is given to students who submit all four projects and attend at least 6 classes.

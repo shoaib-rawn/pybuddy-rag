@@ -1,0 +1,11 @@
+# One banned word or phrase per line. Lines starting with # are ignored.
+ignore previous instructions
+ignore your instructions
+system prompt
+jailbreak
+developer mode
+password
+hack
+cheat
+stupid
+idiot

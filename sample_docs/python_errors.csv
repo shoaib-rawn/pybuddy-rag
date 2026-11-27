@@ -1,0 +1,9 @@
+error,meaning,example,fix
+SyntaxError,Python cannot understand the code,print('hi',Close every bracket and quote
+IndentationError,The spaces at the start of a line are wrong,"if x > 1:
+print(x)",Indent the block with 4 spaces
+NameError,A variable is used before it exists,print(total),Create the variable before using it
+TypeError,An operation got the wrong type,'2' + 2,Convert first: int('2') + 2
+IndexError,A list position does not exist,"nums = [1, 2]; nums[5]",Check len(nums) before using an index
+KeyError,A dictionary key does not exist,d = {'a': 1}; d['b'],Use d.get('b') or check 'b' in d
+ZeroDivisionError,A number was divided by zero,10 / 0,Check that the divisor is not 0
