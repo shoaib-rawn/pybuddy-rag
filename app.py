@@ -373,19 +373,25 @@ def is_help(question):
 def intro_message():
     files = ", ".join(kb_table()["source"]) or "no files yet"
     examples = "\n".join(f"- {q}" for q in EXAMPLES)
-    return ("**Hi, I'm PyBuddy!** I answer questions **only from the course documents**, "
+    return ("**Hi, I'm PyBuddy!** I answer questions **only from the documents in my knowledge base**, "
             "and I show the source of every answer.\n\n"
-            "**I can help with:**\n"
+            "**I can help with the course documents:**\n"
             "- Course info: class times, office hours, weekly topics, deadlines, late penalty, certificate\n"
             "- Setup: is Python free, which version to install, which editor to use\n"
             "- Python basics: variables, data types, lists, loops, range(), functions, try/except\n"
             "- Common errors and their fixes: SyntaxError, IndentationError, NameError, TypeError, "
             "IndexError, KeyError, ZeroDivisionError\n"
             "- Study tips and practice ideas\n\n"
+            "**You can also add your own file:**\n"
+            "1. Open **Knowledge base: upload and ingest** at the top.\n"
+            "2. Upload a PDF, Word (.docx), TXT/MD or CSV file. PDFs must contain real text, not scanned images.\n"
+            "3. Press **Ingest**, then ask about it. To search only that file, choose it in **Search in** on the left.\n\n"
+            "Uploaded files are shared with everyone using this app and are removed when the app restarts, "
+            "so please don't upload anything private.\n\n"
             f"**Files I know right now:** {files}\n\n"
             "**Try asking:**\n" + examples +
             "\n\nIf something is not in the documents, I'll say \"I don't know\" instead of guessing.")
-
+    
 def ask(question, history, **opts):
     start = time.time()
     if is_help(question):                                      # intro: no search, no LLM, always works
@@ -465,7 +471,8 @@ chat_col, panel_col = st.columns([3, 2])
 with chat_col:
     st.subheader("Chat")
     if not st.session_state.messages:
-        st.info("New here? Press Intro to see what PyBuddy knows, or click an example question.")
+               st.info("New here? Press Intro to see what PyBuddy knows, click an example question, "
+                "or upload your own file above and ask about it.")
         st.button("Intro: what can I ask?", key="intro_main", type="primary",
                   on_click=queue_question, args=("What can I ask?",))
         for i, q in enumerate(EXAMPLES):
