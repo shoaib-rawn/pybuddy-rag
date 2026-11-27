@@ -310,13 +310,12 @@ def answer_question(question, hits):
     return text, tokens
 
 def rewrite_question(history, question):
-    if not history:
-        return question, 0
-    convo = "\n".join(f"{m['role']}: {m['content']}" for m in history[-6:])
+    convo = "\n".join(f"{m['role']}: {m['content']}" for m in history[-6:]) or "(no earlier messages)"
     text, tokens = call_llm([
-        {"role": "system", "content": "Rewrite the user's last question so it makes sense on its own, "
-                                      "using the conversation. Return only the rewritten question. Do not answer it."},
-        {"role": "user", "content": f"Conversation:\n{convo}\n\nLast question: {question}"}],
+        {"role": "system", "content": "Turn the user's last message into one short, standalone search query in English. "
+                                      "Use the conversation only to fill in missing details. Keep code, error names and "
+                                      "file names exactly as written. Return only the query. Do not answer it."},
+        {"role": "user", "content": f"Conversation:\n{convo}\n\nLast message: {question}"}],
         temperature=0, max_tokens=300)
     return (text if text and tokens else question), tokens
 
