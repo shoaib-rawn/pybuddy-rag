@@ -470,8 +470,8 @@ if prompt:
 chat_col, panel_col = st.columns([3, 2])
 with chat_col:
     st.subheader("Chat")
-    if not st.session_state.messages:
-               st.info("New here? Press Intro to see what PyBuddy knows, click an example question, "
+       if not st.session_state.messages:
+        st.info("New here? Press Intro to see what PyBuddy knows, click an example question, "
                 "or upload your own file above and ask about it.")
         st.button("Intro: what can I ask?", key="intro_main", type="primary",
                   on_click=queue_question, args=("What can I ask?",))
