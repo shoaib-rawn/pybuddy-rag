@@ -49,12 +49,20 @@ def load_text(path):
 
 def load_docx(path):
     d = Document(path)
-    parts = [p.text.strip() for p in d.paragraphs if p.text.strip()]
-    for table in d.tables:
-        for row in table.rows:
-            parts.append(" | ".join(cell.text.strip() for cell in row.cells))
-    text = "\n".join(parts)
-    return [{"text": text, "metadata": {"page": 1}}] if text else []
+    pieces = []
+    text = "\n".join(p.text.strip() for p in d.paragraphs if p.text.strip())
+    if text:
+        pieces.append({"text": text, "metadata": {"page": 1}})
+    row_no = 0
+    for table in d.tables:                                  # each table row = its own piece (row-based)
+        rows = [[c.text.strip() for c in r.cells] for r in table.rows]
+        header, body = rows[0], rows[1:]
+        for cells in body:
+            row_no += 1
+            line = "\n".join(f"{h}: {v}" for h, v in zip(header, cells) if v)
+            if line:
+                pieces.append({"text": line, "metadata": {"row": row_no}})
+    return pieces
 
 def load_csv(path):
     pieces = []
