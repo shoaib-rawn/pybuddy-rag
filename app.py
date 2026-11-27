@@ -207,12 +207,11 @@ def vector_search(question, k=TOP_K, where=None):
     if n == 0:
         return [], q_vec
     res = collection.query(query_embeddings=[q_vec], n_results=n, where=where,
-                           include=["documents", "metadatas", "distances"])
-    hits = [{"id": i, "text": d, "metadata": m, "score": round(1 - dist, 3)}
-            for i, d, m, dist in zip(res["ids"][0], res["documents"][0],
-                                     res["metadatas"][0], res["distances"][0])]
+                           include=["documents", "metadatas", "embeddings"])
+    hits = [{"id": i, "text": d, "metadata": m, "score": round(float(np.dot(q_vec, e)), 3)}
+            for i, d, m, e in zip(res["ids"][0], res["documents"][0],
+                                  res["metadatas"][0], res["embeddings"][0])]
     return hits, q_vec
-
 def tokenize(text):
     return re.findall(r"[a-z0-9]+", text.lower())
 
