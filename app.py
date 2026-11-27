@@ -28,7 +28,7 @@ BANNED_FILE = "banned_words.txt"
 LLM_MODEL = "openai/gpt-oss-20b"
 CHUNK_SIZE, CHUNK_OVERLAP = 600, 80
 TOP_K = 3
-THRESHOLD = 0.22                         # replace with the value you found in Colab (Cell 6.1)
+THRESHOLD = 0.18                        # replace with the value you found in Colab (Cell 6.1)
 FILE_TYPES = ["pdf", "docx", "txt", "md", "csv"]
 
 st.set_page_config(page_title="PyBuddy RAG Assistant", layout="wide")
