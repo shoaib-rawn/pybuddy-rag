@@ -1,0 +1,5 @@
+chroma_db/
+uploads/
+__pycache__/
+.streamlit/secrets.toml
+.ipynb_checkpoints/
